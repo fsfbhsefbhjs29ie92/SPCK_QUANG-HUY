@@ -1,0 +1,329 @@
+:root {
+    --bg-body: #050505;
+    --gold-accent: #c5a059;
+    --gold-hover: #d8b46e;
+    --text-primary: #ffffff;
+    --text-muted: #9a9a9e;
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --border-gold-glow: rgba(197, 160, 89, 0.35);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Transition chuẩn mượt cao cấp */
+    --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .brand-name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+}
+
+/* ================= BACKGROUND TRANG SỨC XA XỈ ================= */
+.login-page {
+    position: relative;
+}
+
+.cinematic-bg {
+    position: fixed;
+    top: -5%; left: -5%;
+    width: 110%; height: 110%;
+    /* Ảnh nhẫn kim cương / trang sức xa xỉ Unsplash chất lượng cao */
+    background: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    z-index: -2;
+    animation: kenBurns 25s ease-out forwards;
+}
+
+.cinematic-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Phủ hiệu ứng làm tối trung tâm tập trung vào Card */
+    background: radial-gradient(circle at center, rgba(8, 8, 10, 0.55) 0%, rgba(5, 5, 5, 0.92) 85%);
+    z-index: -1;
+}
+
+@keyframes kenBurns {
+    0% { transform: scale(1.12); filter: brightness(0.6) contrast(1.1); }
+    100% { transform: scale(1.0); filter: brightness(0.35) contrast(1.1); }
+}
+
+/* ================= HEADER TRONG SUỐT ================= */
+.header-transparent {
+    background-color: transparent;
+    border: none;
+    padding-top: 24px;
+}
+
+.brand-name {
+    font-size: 1.6rem;
+    letter-spacing: 0.25em;
+    color: var(--text-primary);
+}
+
+/* ================= HỘP ĐĂNG NHẬP BO GÓC (GLASS CARD) ================= */
+.main-content {
+    flex: 1;
+    padding: 30px 20px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 430px;
+}
+
+.glass-panel {
+    background: rgba(18, 18, 22, 0.65);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    /* Bo góc mịn 20px */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* Tạo hiệu ứng viền sáng mỏng tự nhiên ở cạnh trên */
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.brand-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-accent);
+    font-weight: 600;
+}
+
+.login-title {
+    font-size: 2.1rem;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.login-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* ================= Ô ĐIỀN THÔNG TIN BO GÓC ================= */
+.form-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    pointer-events: none;
+}
+
+/* Input dạng Hộp bo góc mềm mại (Rounded Box) */
+.custom-input-rounded {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important; /* Bo góc 10px */
+    color: var(--text-primary) !important;
+    padding: 13px 16px 13px 44px; /* Dành chỗ cho Icon bên trái */
+    font-size: 0.88rem;
+    font-weight: 300;
+    transition: all 0.35s var(--ease-luxe);
+}
+
+.custom-input-rounded::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 300;
+}
+
+/* Khi bấm chuột/focus vào ô nhập */
+.custom-input-rounded:focus {
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border-color: var(--gold-accent) !important;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2) !important;
+    outline: none;
+}
+
+.custom-input-rounded:focus ~ .input-icon,
+.input-icon-wrapper:focus-within .input-icon {
+    color: var(--gold-accent);
+}
+
+/* ================= NÚT BẤM (BUTTON BO GÓC) ================= */
+.btn-luxury {
+    background: linear-gradient(135deg, #c5a059 0%, #b38b43 100%);
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    border-radius: 10px; /* Bo góc nút khớp với Input */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s var(--ease-luxe);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-luxury:hover {
+    background: linear-gradient(135deg, #d8b46e 0%, #c5a059 100%);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(197, 160, 89, 0.3);
+}
+
+.btn-luxury:active {
+    transform: translateY(0);
+}
+
+/* ================= ANIMATIONS (XUẤT HIỆN LẦN LƯỢT) ================= */
+.animate-fade-down {
+    animation: fadeDown 1.2s var(--ease-luxe) forwards;
+    opacity: 0;
+}
+
+.animate-fade-up {
+    animation: fadeUp 1.2s var(--ease-luxe) forwards;
+    opacity: 0;
+}
+
+.element-delay-1 { animation: fadeUp 1s var(--ease-luxe) 0.15s forwards; opacity: 0; }
+.element-delay-2 { animation: fadeUp 1s var(--ease-luxe) 0.25s forwards; opacity: 0; }
+.element-delay-3 { animation: fadeUp 1s var(--ease-luxe) 0.35s forwards; opacity: 0; }
+.element-delay-4 { animation: fadeUp 1s var(--ease-luxe) 0.45s forwards; opacity: 0; }
+.element-delay-5 { animation: fadeUp 1s var(--ease-luxe) 0.55s forwards; opacity: 0; }
+
+@keyframes fadeDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= FOOTER ================= */
+.login-footer {
+    border: none;
+    background: transparent;
+}
+.login-footer p {
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+/* ================= NÂNG CẤP HIỆU ỨNG NÚT BẤM (METALLIC SWEEP) ================= */
+.btn-luxury {
+    background: linear-gradient(135deg, #c5a059 0%, #b38b43 100%);
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s var(--ease-luxe);
+    position: relative;
+    overflow: hidden;
+    z-index: 1; /* Cần thiết cho hiệu ứng ánh sáng */
+}
+
+/* Tia sáng kim loại */
+.btn-luxury::after {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: -100%; /* Giấu tia sáng bên trái */
+    width: 50%; 
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    z-index: -1;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-luxury:hover {
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(197, 160, 89, 0.35);
+}
+
+/* Kích hoạt tia sáng lướt qua khi Hover */
+.btn-luxury:hover::after {
+    left: 150%;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-luxury:active {
+    transform: translateY(0);
+}
+
+
+/* ================= FIX LỖI MODAL SẢN PHẨM (TRẮNG LÓA) ================= */
+/* Ép kiểu cho form nhập liệu trong Product Modal */
+.custom-input {
+    background-color: rgba(18, 18, 22, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background-color: rgba(25, 25, 30, 0.95) !important;
+    border-color: var(--gold-accent) !important;
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.15) !important;
+    outline: none;
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Khung nền Modal đồng bộ Dark Mode */
+.custom-modal {
+    background-color: #0d0d0d !important; /* Đen sâu */
+    border: 1px solid var(--border-gold-glow) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.custom-modal .modal-title {
+    color: var(--gold-accent);
+}
+
+/* Label nhạt màu cho chữ đỡ gắt */
+.custom-modal .form-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}

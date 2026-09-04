@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+.aura-services-main {
+    --bg-card: #ffffff;
+    --text-primary: #121212;
+    --text-muted: #666666;
+    --gold-accent: #c5a059;
+    --gold-gradient: linear-gradient(135deg, #dfbe79 0%, #c5a059 50%, #9e7b38 100%);
+    --border-subtle: rgba(197, 160, 89, 0.22);
+    --shadow-luxury: 0 20px 45px rgba(0,0,0,0.05);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+    background-color: transparent;
+    padding-bottom: 70vh;
+}
+
+body.darkmode .aura-services-main {
+    --bg-card: #111319;
+    --text-primary: #f3f4f6;
+    --text-muted: #cbd5e1;
+    --gold-accent: #dfbe79;
+    --gold-gradient: linear-gradient(135deg, #f3d492 0%, #dfbe79 50%, #b38f45 100%);
+    --border-subtle: rgba(223, 190, 121, 0.18);
+    --shadow-luxury: 0 20px 45px rgba(0,0,0,0.45);
+}
+
+/* QUAN TRỌNG: Thiết lập khoảng cách cách đỉnh để không bị header che khuất khi bấm trượt tới */
+.aura-services-main section {
+    scroll-margin-top: 110px; 
+}
+
+.aura-services-main h1, 
+.aura-services-main h2, 
+.aura-services-main span {
+    color: var(--text-primary);
+}
+.aura-services-main .text-muted {
+    color: var(--text-muted) !important;
+}
+.aura-services-main .text-gold {
+    color: var(--gold-accent) !important;
+}
+
+.aura-services-main .font-serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 0.02em; }
+.aura-services-main .tracking-widest { letter-spacing: 0.25em; }
+.aura-services-main .aura-line { width: 100px; height: 2px; background: var(--gold-gradient); }
+.aura-services-main .aura-num { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold-accent); text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid var(--gold-accent); padding-bottom: 3px; }
+.aura-services-main .border-bottom-subtle { border-bottom: 1px solid var(--border-subtle); }
+.aura-services-main .leading-loose { line-height: 1.9; font-size: 1rem; color: var(--text-muted) !important; }
+
+.aura-services-main .aura-card { 
+    background-color: var(--bg-card); 
+    border: 1px solid var(--border-subtle); 
+    border-radius: 2px; 
+    box-shadow: var(--shadow-luxury); 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease; 
+}
+.aura-services-main .aura-card:hover { border-color: var(--gold-accent); transform: translateY(-3px); }
+
+.aura-services-main .aura-in { 
+    background-color: transparent !important; 
+    border: 1px solid var(--border-subtle) !important; 
+    color: var(--text-primary) !important; 
+    border-radius: 2px !important; 
+    font-size: 0.9rem; 
+    padding: 15px 18px; 
+    transition: all 0.3s ease; 
+}
+.aura-services-main .aura-in::placeholder { color: var(--text-muted); opacity: 0.7; }
+.aura-services-main .aura-in:focus { border-color: var(--gold-accent) !important; box-shadow: 0 0 15px rgba(197,160,89,0.3) !important; outline: none; }
+
+.aura-services-main .aura-btn { 
+    background: var(--gold-gradient); 
+    border: none; 
+    color: #07080b; 
+    text-transform: uppercase; 
+    font-size: 0.75rem; 
+    letter-spacing: 0.18em; 
+    border-radius: 2px; 
+    font-weight: 600; 
+    box-shadow: 0 10px 25px rgba(197,160,89,0.25); 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.aura-services-main .aura-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(197,160,89,0.4); filter: brightness(1.08); color: #07080b; }
+
+.aura-services-main .aura-img { border: 1px solid var(--border-subtle); border-radius: 2px; overflow: hidden; position: relative; box-shadow: var(--shadow-luxury); }
+.aura-services-main .aura-img img { transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); filter: brightness(0.96); }
+.aura-services-main .aura-img:hover img { transform: scale(1.05); filter: brightness(1.02); }
+
+.aura-services-main .aura-reveal { 
+    opacity: 0; 
+    transform: translateY(45px); 
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    will-change: opacity, transform; 
+}
+.aura-services-main .aura-reveal.active { 
+    opacity: 1; 
+    transform: translateY(0); 
+}

@@ -1,0 +1,597 @@
+/* ==========================================================================
+   1. HỆ THỐNG BIẾN & CẤU HÌNH THEME (LIGHT & DARK MODE)
+   ========================================================================== */
+:root {
+    /* Light Mode */
+    --bg-body: #FAF8F5;
+    --bg-header: rgba(250, 248, 245, 0.9);
+    --bg-topbar: #0E0D10;
+    --text-topbar: #E8C872;
+    
+    --text-primary: #121214;
+    --text-muted: #66666D;
+    
+    --gold-primary: #C5A059;
+    --gold-light: #E5C278;
+    --gold-dark: #9A7734;
+    
+    --border-color: rgba(197, 160, 89, 0.2);
+    --header-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    
+    /* Footer Vars Light */
+    --ft-bg-primary: #FAF8F5;
+    --ft-bg-secondary: #F3EFE9;
+    
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.darkmode {
+    /* Dark Mode */
+    --bg-body: #08080A;
+    --bg-header: rgba(12, 12, 15, 0.9);
+    --bg-topbar: #000000;
+    --text-topbar: #F3D382;
+    
+    --text-primary: #FFFFFF;
+    --text-muted: #A0A0AA;
+    
+    --gold-primary: #E0C080;
+    --gold-light: #F7E4B3;
+    --gold-dark: #B38E46;
+    
+    --border-color: rgba(224, 192, 128, 0.18);
+    --header-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    
+    /* Footer Vars Dark */
+    --ft-bg-primary: #050505;
+    --ft-bg-secondary: #0A0A0C;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    margin: 0;
+    transition: background-color 0.5s var(--ease-luxe), color 0.5s var(--ease-luxe);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   2. HEADER & TOPBAR STYLES
+   ========================================================================== */
+.header-fixed-container {
+    width: 100%;
+    z-index: 1030;
+}
+
+.top-announcement-bar {
+    background-color: var(--bg-topbar);
+    color: var(--text-topbar);
+    padding: 9px 0;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(228, 200, 114, 0.15);
+}
+
+.luxury-navbar {
+    background: var(--bg-header);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 0;
+    transition: all 0.4s var(--ease-luxe);
+    box-shadow: var(--header-shadow);
+}
+
+.luxury-navbar.scrolled {
+    padding: 10px 0;
+    border-bottom-color: var(--gold-primary);
+}
+
+/* Logo */
+.brand-link {
+    text-decoration: none;
+    gap: 12px;
+}
+
+.logo-circle-frame {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s var(--ease-luxe);
+}
+
+.brand-svg-logo {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px rgba(197, 160, 89, 0.4));
+}
+
+.brand-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--text-primary);
+    transition: color 0.4s ease;
+}
+
+.brand-link:hover .logo-circle-frame {
+    transform: rotate(180deg) scale(1.08);
+}
+
+/* Menu Nav */
+.navbar-nav .nav-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted) !important;
+    padding: 8px 18px !important;
+    position: relative;
+    transition: all 0.35s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--text-primary) !important;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    transition: width 0.4s var(--ease-luxe);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 70%;
+}
+
+/* Theme Switcher Button */
+.btn-theme-switch {
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    width: 52px;
+    height: 28px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    transition: all 0.4s var(--ease-luxe);
+}
+
+.btn-theme-switch .icon-sun {
+    color: #F39C12;
+    font-size: 0.85rem;
+    z-index: 2;
+}
+
+.btn-theme-switch .icon-moon {
+    color: #F1C40F;
+    font-size: 0.85rem;
+    z-index: 2;
+}
+
+.theme-glow {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s var(--ease-luxe);
+    z-index: 1;
+}
+
+body.darkmode .theme-glow {
+    transform: translateX(24px);
+}
+
+.btn-theme-switch:hover {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.3);
+}
+
+.custom-toggler {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.toggler-bar {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+}
+
+/* Main Content Padding Fix */
+.main-content-wrapper {
+    padding-top: 170px;
+    min-height: 80vh;
+}
+
+.sub-heading {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+.main-heading {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-top: 10px;
+}
+
+.gold-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   3. FOOTER STYLES
+   ========================================================================== */
+.luxury-footer {
+    background-color: var(--ft-bg-primary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.5s var(--ease-luxe), color 0.5s var(--ease-luxe);
+    overflow: hidden;
+}
+
+/* Newsletter Section */
+.footer-vip-newsletter {
+    background-color: var(--ft-bg-secondary);
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.5s var(--ease-luxe);
+}
+
+.newsletter-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.newsletter-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.input-group-luxe {
+    display: flex;
+    max-width: 500px;
+    width: 100%;
+    border-bottom: 1px solid var(--text-muted);
+    transition: border-color 0.3s ease;
+}
+
+.input-group-luxe:focus-within {
+    border-bottom-color: var(--gold-primary);
+}
+
+.luxe-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 12px 0;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.luxe-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 300;
+    font-style: italic;
+}
+
+.luxe-btn-submit {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.luxe-btn-submit:hover {
+    color: var(--gold-primary);
+}
+
+.luxe-btn-submit i {
+    transition: transform 0.3s ease;
+}
+
+.luxe-btn-submit:hover i {
+    transform: translateX(5px);
+}
+
+.form-feedback {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gold-primary);
+    min-height: 20px;
+}
+
+/* Main Footer Content */
+.footer-main {
+    padding: 70px 0 50px;
+}
+
+.footer-brand-logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--text-primary);
+}
+
+.brand-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    margin-top: -5px;
+    margin-left: 5px;
+}
+
+.brand-story {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* Social Icons */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.4s var(--ease-luxe);
+}
+
+.social-icon:hover {
+    background-color: var(--gold-primary);
+    border-color: var(--gold-primary);
+    color: #FFFFFF;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Footer Links */
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    letter-spacing: 0.05em;
+}
+
+.footer-list li {
+    margin-bottom: 15px;
+}
+
+.footer-list a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-list a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--gold-primary);
+    transition: width 0.4s ease;
+}
+
+.footer-list a:hover {
+    color: var(--gold-primary);
+}
+
+.footer-list a:hover::before {
+    width: 100%;
+}
+
+/* Bottom Footer */
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 25px 0;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.payment-methods i {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.payment-methods i:hover {
+    color: var(--gold-primary);
+}
+
+/* Scroll Fade Animation */
+.fade-up-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-up-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--bg-body);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 15px;
+        box-shadow: var(--header-shadow);
+    }
+    .navbar-nav .nav-link {
+        padding: 12px 0 !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .navbar-nav .nav-link::after {
+        display: none;
+    }
+    .newsletter-title {
+        font-size: 2.2rem;
+    }
+    .footer-brand-col {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .footer-vip-newsletter {
+        padding: 50px 15px;
+    }
+    .footer-main {
+        padding: 40px 0 20px;
+    }
+    .footer-heading {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .footer-bottom {
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .payment-methods {
+        justify-content: center;
+        margin-top: 15px;
+    }
+}
+/* Đẩy toàn bộ nội dung xuống dưới header cố định */
+body {
+    padding-top: 135px; 
+}
+
+/* Đảm bảo khung tài khoản có khoảng cách thoáng ở trên */
+.account-page-wrapper {
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+    padding-top: 40px !important;
+    padding-bottom: 60px !important;
+}
+/* Khắc phục triệt để lỗi bị Header che khuất khi trượt đến ID */
+.aura-world-sub-section {
+    scroll-margin-top: 120px; /* Khoảng cách cách đỉnh màn hình bằng chiều cao Header */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+}
+
+/* Hiệu ứng khi phần tử xuất hiện trên màn hình */
+.aura-world-sub-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hiệu ứng làm nổi bật khi bấm từ footer chuyển đến */
+.aura-world-sub-section.highlight-section {
+    background: rgba(226, 194, 134, 0.12);
+    box-shadow: 0 0 40px rgba(226, 194, 134, 0.25);
+}
+
+/* Hiệu ứng sang trọng cho các tiêu đề và đường kẻ */
+.aura-section-title {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInDown 1s forwards;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

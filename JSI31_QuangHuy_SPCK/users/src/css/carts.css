@@ -1,0 +1,413 @@
+/* ==========================================
+   AURA HIGH JEWELRY - CARTS & CHECKOUT LUXURY STYLE
+   ========================================== */
+
+.cart-main-container {
+    min-height: calc(100vh - 220px);
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.cart-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 40px !important;
+}
+
+/* Thẻ sản phẩm trong giỏ hàng */
+.cart-item-card {
+    background-color: var(--ft-bg-secondary);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    padding: 20px;
+    color: var(--text-primary);
+}
+
+.cart-item-card:hover {
+    border-color: var(--gold-primary);
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.25);
+}
+
+.cart-item-card .item-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    color: var(--text-primary) !important;
+    font-size: 1.3rem;
+}
+
+/* Khung form thanh toán bên phải */
+.checkout-wrapper {
+    background-color: var(--ft-bg-secondary);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    padding: 40px !important;
+    position: sticky;
+    top: 130px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.checkout-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    letter-spacing: 0.04em;
+    padding-bottom: 15px;
+}
+
+/* Ô nhập liệu chuẩn form-control-luxe */
+.form-control-luxe, 
+.luxury-input {
+    background: rgba(197, 160, 89, 0.02) !important;
+    border: 1px solid rgba(197, 160, 89, 0.22) !important;
+    border-radius: 4px !important;
+    color: var(--text-primary) !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+}
+
+.form-control-luxe:focus, 
+.luxury-input:focus {
+    background: rgba(197, 160, 89, 0.05) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--gold-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.25) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary) !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--ft-bg-secondary) inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-control-luxe::placeholder,
+.luxury-input::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.5 !important;
+    font-size: 0.88rem;
+    font-style: italic;
+}
+
+select.form-control-luxe, select.luxury-input {
+    background-color: var(--ft-bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+select.form-control-luxe option {
+    background-color: var(--ft-bg-secondary);
+    color: var(--text-primary);
+}
+
+.luxury-muted, .form-label {
+    color: var(--text-muted) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.cart-qty-input {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border-color: rgba(197, 160, 89, 0.3) !important;
+    font-weight: 600;
+}
+
+.border-gold {
+    border: 1px solid rgba(197, 160, 89, 0.25) !important;
+    border-radius: 6px;
+    background: rgba(197, 160, 89, 0.02);
+}
+
+.border-top-gold {
+    border-top: 1px solid rgba(197, 160, 89, 0.2) !important;
+}
+
+.cart-total-price {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    color: var(--gold-primary) !important;
+    font-size: 1.8rem !important;
+}
+
+.btn-luxe-primary {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary)) !important;
+    border: none !important;
+    color: #000 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.25);
+}
+
+.btn-luxe-primary:hover {
+    opacity: 0.95;
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.45);
+    transform: translateY(-2px);
+    color: #000 !important;
+}
+
+.btn-luxe-outline {
+    background: transparent;
+    border: 1px solid var(--gold-primary);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-luxe-outline:hover {
+    background-color: var(--gold-primary);
+    color: #000;
+}
+
+.qty-btn {
+    background-color: transparent !important;
+    border-color: rgba(197, 160, 89, 0.4) !important;
+    color: var(--gold-primary) !important;
+    border-radius: 4px !important;
+}
+.qty-btn:hover {
+    background-color: var(--gold-primary) !important;
+    color: #000 !important;
+}
+
+/* Banner & In-page Message Luxury Styles */
+.luxe-welcome-banner {
+    background-color: var(--ft-bg-secondary);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 8px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.luxe-alert-banner {
+    background-color: var(--ft-bg-secondary);
+    border-left: 4px solid var(--gold-primary);
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    border-right: 1px solid rgba(197, 160, 89, 0.3);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 4px;
+    padding: 15px 20px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeInLuxe 0.4s ease;
+    margin-bottom: 20px;
+}
+
+.luxe-alert-banner.error {
+    border-left-color: #d9534f;
+}
+
+.luxe-alert-banner.success {
+    border-left-color: var(--gold-primary);
+}
+
+@keyframes fadeInLuxe {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Modal Backdrop & Content Sang Trọng */
+.aura-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.aura-modal-content {
+    background-color: var(--bg-card, #ffffff);
+    border: 1px solid #C9A24D;
+    border-radius: 12px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.btn-aura-outline {
+    background: transparent;
+    color: var(--text-primary, #121212);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px 22px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-aura-outline:hover {
+    border-color: #C9A24D;
+    color: #C9A24D;
+}
+
+.btn-aura-danger {
+    background: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-aura-danger:hover {
+    background: #b02a37;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Hiệu ứng thu hẹp và trượt mượt mà khi xóa item */
+.cart-item-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-item-removing {
+    opacity: 0 !important;
+    transform: translateX(-40px) scale(0.95) !important;
+    max-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+/* IMPORT PHÔNG CHỮ LUXURY CINZEL */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+#luxeToastContainer {
+    position: fixed !important;
+    top: 35px !important;
+    right: 35px !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    pointer-events: none !important;
+}
+
+/* TOAST CAO CẤP: PHÔNG TO, SANG TRỌNG */
+.aura-toast-card {
+    pointer-events: auto !important;
+    background: rgba(15, 15, 17, 0.88) !important;
+    border: 1px solid rgba(212, 175, 55, 0.45) !important;
+    border-radius: 50px !important;
+    
+    /* Padding rộng rãi hơn cho chữ to */
+    padding: 16px 32px 16px 24px !important;
+    
+    /* Đổ bóng ánh kim vàng cao cấp */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 0 20px rgba(212, 175, 55, 0.12) !important;
+                
+    color: #F8F5EE !important;
+    
+    /* Phông chữ Cinzel sang trọng, to rõ */
+    font-family: 'Cinzel', 'Playfair Display', serif !important;
+    font-size: 0.92rem !important; /* Đã tăng kích thước chữ */
+    font-weight: 600 !important;
+    letter-spacing: 2px !important; /* Giãn nét rộng chuẩn Haute Couture */
+    text-transform: uppercase !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    
+    opacity: 0 !important;
+    transform: translateY(-20px) scale(0.95) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.aura-toast-card.show {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Icon vàng kim size to tương ứng */
+.aura-toast-card i {
+    color: #D4AF37 !important;
+    font-size: 1.35rem !important; /* Tăng kích thước icon */
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6)) !important;
+}
+.aura-brand-tag {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold-primary, #C9A24D);
+    font-weight: 600;
+}
+
+.aura-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--text-primary, #121212);
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+}
+
+.aura-subtitle {
+    color: var(--text-secondary, #707070);
+    font-size: 0.95rem;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.aura-gold-line {
+    height: 1px;
+    width: 50px;
+    background: var(--gold-primary, #C9A24D);
+}
+/* Hiệu ứng Fade In / Slide Up cao cấp */
+.aura-fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.aura-fade-in-delayed {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

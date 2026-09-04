@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-main: #FAF8F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #121212;
+    --text-secondary: #555555;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --gold-primary: #C9A24D;
+    --gold-gradient: linear-gradient(135deg, #c9a24d 0%, #f7e7c4 50%, #b08732 100%);
+    --aura-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+body.darkmode {
+    --bg-main: #0B0B0E;
+    --bg-card: #131419;
+    --text-primary: #F7F7F8;
+    --text-secondary: #D1D1D6;
+    --border-color: rgba(226, 194, 134, 0.2);
+    --gold-primary: #E2C286;
+    --gold-gradient: linear-gradient(135deg, #dfb86c 0%, #f7e7c4 50%, #a88338 100%);
+    --aura-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-gold {
+    color: var(--gold-primary) !important;
+}
+
+.bg-card {
+    background-color: var(--bg-card);
+}
+
+.border-top-gold {
+    border-top: 1px solid var(--border-color);
+}
+
+.border-bottom-gold {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.aura-home-main {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: all 0.4s ease;
+}
+
+.aura-carousel-img {
+    height: 75vh;
+    object-fit: cover;
+    filter: brightness(0.65);
+    background-color: #0B0B0E;
+}
+
+.aura-caption {
+    bottom: 35%;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+}
+
+.aura-caption h2 {
+    font-size: 3.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.aura-caption-text {
+    color: #F7F7F8 !important;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.aura-section-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.aura-gold-line {
+    height: 2px;
+    width: 60px;
+    background: var(--gold-primary);
+    margin-top: 10px;
+}
+
+.aura-horizontal-scroll {
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+}
+
+.aura-horizontal-scroll>div {
+    scroll-snap-align: start;
+    min-width: 280px;
+}
+
+.aura-horizontal-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.aura-horizontal-scroll::-webkit-scrollbar-thumb {
+    background: var(--gold-primary);
+    border-radius: 10px;
+}
+
+.aura-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+    box-shadow: var(--aura-shadow);
+}
+
+.aura-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.8s ease-in-out;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.aura-card:hover::after {
+    left: 150%;
+}
+
+.aura-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-primary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 0 15px rgba(226, 194, 134, 0.12);
+}
+
+.aura-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    padding: 25px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(226, 194, 134, 0.05) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aura-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.7s ease;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
+.aura-card:hover .aura-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.aura-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--gold-gradient);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 30px;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.aura-card .card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-meta {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.product-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.product-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+    font-weight: 300;
+}
+
+.price-old {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.price-current {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold-primary);
+}
+
+.btn-aura {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    padding: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+    margin-top: auto;
+}
+
+.btn-aura:hover {
+    background: var(--gold-primary);
+    color: #000;
+    border-color: var(--gold-primary);
+    box-shadow: 0 4px 15px rgba(226, 194, 134, 0.3);
+}
+
+.btn-aura:disabled {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.aura-world-sub-section {
+    scroll-margin-top: 100px;
+    transition: all 0.5s ease;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+}
+
+.aura-world-sub-section.highlight-section {
+    background: rgba(226, 194, 134, 0.08);
+    box-shadow: 0 0 30px rgba(226, 194, 134, 0.15);
+    transform: scale(1.01);
+}
+
+.aura-desc-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.aura-world-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: brightness(0.95);
+    box-shadow: var(--aura-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.aura-world-sub-section:hover .aura-world-img {
+    transform: scale(1.03);
+    filter: brightness(1.05);
+    border-color: var(--gold-primary);
+}
+/* Đẩy toàn bộ nội dung xuống dưới header cố định */
+body {
+    padding-top: 135px; 
+}
+
+/* Đảm bảo khung tài khoản có khoảng cách thoáng ở trên */
+.account-page-wrapper {
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+    padding-top: 40px !important;
+    padding-bottom: 60px !important;
+}
+/* Khắc phục triệt để lỗi bị Header che khuất khi trượt đến ID */
+.aura-world-sub-section {
+    scroll-margin-top: 120px; /* Khoảng cách cách đỉnh màn hình bằng chiều cao Header */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+}
+
+/* Hiệu ứng khi phần tử xuất hiện trên màn hình */
+.aura-world-sub-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hiệu ứng làm nổi bật khi bấm từ footer chuyển đến */
+.aura-world-sub-section.highlight-section {
+    background: rgba(226, 194, 134, 0.12);
+    box-shadow: 0 0 40px rgba(226, 194, 134, 0.25);
+}
+
+/* Hiệu ứng sang trọng cho các tiêu đề và đường kẻ */
+.aura-section-title {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInDown 1s forwards;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.aura-world-sub-section {
+    /* Quan trọng: Báo cho trình duyệt tự động cách đỉnh màn hình 120px (tránh bị Header che) khi nhảy đến ID */
+    scroll-margin-top: 120px; 
+    
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease, background-color 0.5s ease;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+}
+
+/* Hiệu ứng hiện ra mượt mà */
+.aura-world-sub-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hiệu ứng nhấp nháy làm nổi bật mục được chọn từ Footer */
+.aura-world-sub-section.highlight-section {
+    background: rgba(226, 194, 134, 0.15);
+    box-shadow: 0 0 35px rgba(226, 194, 134, 0.3);
+}
+.added-to-cart-anim {
+    background-color: var(--gold-primary, #c5a059) !important;
+    color: #000 !important;
+    border-color: var(--gold-primary, #c5a059) !important;
+    transform: scale(0.96);
+    transition: all 0.2s ease-in-out;
+}

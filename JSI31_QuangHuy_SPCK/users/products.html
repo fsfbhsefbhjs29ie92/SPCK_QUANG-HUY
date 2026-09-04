@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura High Jewelry | Tuyệt Tác Trang Sức</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- FontAwesome CDN (Cho icon tìm kiếm & gem) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Sang Trọng -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/products.css">
+</head>
+<body>
+
+    <!-- CONTAINER HEADER CỐ ĐỊNH -->
+    <div class="header-fixed-container fixed-top">
+        
+        <!-- THANH BÁO THÔNG TIN TOP BAR -->
+        <div class="top-announcement-bar">
+            <div class="container text-center">
+                <span class="announcement-text">
+                    <i class="bi bi-gem me-2"></i>ĐẶC QUYỀN VẬN CHUYỂN BẢO HIỂM TOÀN CẦU DÀNH CHO THÀNH VIÊN VIP
+                </span>
+            </div>
+        </div>
+
+        <!-- HEADER CHÍNH -->
+        <header class="luxury-navbar" id="mainHeader">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg p-0">
+                    
+                    <!-- 1. BÊN TRÁI: LOGO TRÒN & TÊN THƯƠNG HIỆU -->
+                    <a class="navbar-brand d-flex align-items-center brand-link" href="index.html">
+                        <div class="logo-circle-frame">
+                            <svg class="brand-svg-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="48" stroke="url(#goldGrad)" stroke-width="2"/>
+                                <path d="M50 20L68 38L50 80L32 38L50 20Z" fill="url(#goldGrad)"/>
+                                <path d="M32 38H68M50 20V80" stroke="#000" stroke-opacity="0.3" stroke-width="1"/>
+                                <defs>
+                                    <linearGradient id="goldGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#D4AF37"/>
+                                        <stop offset="50%" stop-color="#FFF3A8"/>
+                                        <stop offset="100%" stop-color="#AA7C11"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="brand-title">AURA</span>
+                    </a>
+
+                    <!-- NÚT MOBILE TOGGLER -->
+                    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#userNavbar" aria-controls="userNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-bar"></span>
+                        <span class="toggler-bar"></span>
+                        <span class="toggler-bar"></span>
+                    </button>
+
+                    <!-- 2. Ở GIỮA & PHẢI: MENU VÀ ICONS -->
+                    <div class="collapse navbar-collapse" id="userNavbar">
+                        
+                        <!-- MENU ĐIỀU HƯỚNG CĂN GIỮA -->
+                        <ul class="navbar-nav mx-auto align-items-lg-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="products.html">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.html">Dịch vụ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="carts.html">Giỏ hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="orders.html">Đơn hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="account.html">Tài khoản</a>
+                            </li>
+                        </ul>
+
+                        <!-- NÚT CHUYỂN LIGHT / DARK MODE BÊN PHẢI -->
+                        <div class="theme-toggle-wrapper d-flex align-items-center ms-lg-3 mt-3 mt-lg-0">
+                            <button id="themeToggleBtn" class="btn-theme-switch" aria-label="Đổi giao diện">
+                                <i class="bi bi-sun-fill icon-sun"></i>
+                                <i class="bi bi-moon-stars-fill icon-moon"></i>
+                                <span class="theme-glow"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="aura-products-main py-5">
+        <div class="container">
+            
+            <!-- Header Section -->
+            <div class="row mb-5 text-center aura-product-animate is-visible">
+                <div class="col-12">
+                    <span class="aura-brand-tag font-montserrat">AURA HIGH JEWELRY</span>
+                    <h1 class="aura-title font-playfair my-2">BỘ SƯU TẬP SẢN PHẨM</h1>
+                    <div class="aura-gold-line mx-auto my-3"></div>
+                    <p class="aura-subtitle font-montserrat">Khám phá các sản phẩm trang sức tinh xảo và đẳng cấp vượt thời gian từ AURA.</p>
+                </div>
+            </div>
+
+            <!-- Filter & Search Controls -->
+            <div class="aura-controls p-4 mb-5 rounded-3 aura-product-animate is-visible">
+                <div class="row g-3 align-items-center">
+                    <!-- Search -->
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="input-group aura-input-group">
+                            <span class="input-group-text bg-transparent border-end-0"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                    </div>
+                    
+                    <!-- Filter by Brand -->
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <select id="filterBrand" class="form-select aura-select">
+                            <option value="all">Tất cả thương hiệu</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter by Category -->
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <select id="filterCategory" class="form-select aura-select">
+                            <option value="all">Mọi phân loại</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort by Price -->
+                    <div class="col-12 col-md-6 col-lg-2">
+                        <select id="sortPrice" class="form-select aura-select">
+                            <option value="default">Sắp xếp giá</option>
+                            <option value="asc">Giá tăng dần</option>
+                            <option value="desc">Giá giảm dần</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter by Price Range -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <select id="filterPriceRange" class="form-select aura-select">
+                            <option value="all">Mọi mức giá</option>
+                            <option value="under50">Dưới 50,000,000 ₫</option>
+                            <option value="50to100">50,000,000 ₫ - 100,000,000 ₫</option>
+                            <option value="over100">Trên 100,000,000 ₫</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center py-5">
+                <div class="spinner-border text-gold" role="status" style="width: 2.5rem; height: 2.5rem;">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+                <p class="mt-3 aura-text-muted font-montserrat small">Đang tải danh sách sản phẩm AURA...</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row g-4" id="productList">
+                <!-- Sản phẩm sẽ được render bằng JS tại đây -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-5 d-none">
+                <i class="fa-regular fa-gem fs-1 text-gold mb-3"></i>
+                <h4 class="font-playfair">Không tìm thấy sản phẩm phù hợp</h4>
+                <p class="aura-text-muted font-montserrat">Vui lòng thử chọn lại tiêu chí tìm kiếm khác.</p>
+            </div>
+
+            <!-- THANH PHÂN TRANG -->
+            <nav aria-label="Page navigation">
+                <ul id="paginationContainer" class="pagination justify-content-center mt-5">
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="cartToast" class="toast aura-toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header aura-toast-header">
+                    <i class="fa-solid fa-crown text-gold me-2"></i>
+                    <strong class="me-auto font-playfair text-gold">AURA JEWELRY</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body font-montserrat">
+                    Sản phẩm đã được thêm vào giỏ hàng.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- LUXURY FOOTER -->
+    <footer class="luxury-footer" id="luxuryFooter">
+        <div class="footer-vip-newsletter">
+            <div class="container text-center">
+                <h2 class="newsletter-title">Đặc Quyền Hội Viên</h2>
+                <p class="newsletter-desc">Đăng ký để trở thành người đầu tiên chiêm ngưỡng các tuyệt tác Haute Joaillerie và nhận thiệp mời dự các sự kiện kín.</p>
+                
+                <form class="newsletter-form mx-auto" id="vipNewsletterForm">
+                    <div class="input-group-luxe">
+                        <input type="email" class="luxe-input" id="vipEmail" placeholder="Địa chỉ Email của Quý khách" required>
+                        <button type="submit" class="luxe-btn-submit">
+                            <span>Đăng ký</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="form-feedback mt-3" id="formFeedback"></div>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="row gx-lg-5 gy-5">
+                    <div class="col-lg-5 col-md-12 pe-lg-5 footer-brand-col">
+                        <a href="index.html" class="footer-brand-logo mb-4 d-inline-block">
+                            <span class="brand-name">AURA</span>
+                            <span class="brand-tagline">PARIS</span>
+                        </a>
+                        <p class="brand-story">
+                            Hơn một thế kỷ chế tác thủ công, AURA tôn vinh vẻ đẹp vĩnh cửu của kim cương và đá quý, mang đến những kiệt tác độc bản dành riêng cho giới thượng lưu.
+                        </p>
+                        <div class="social-links mt-4">
+                            <a href="#" class="social-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-icon" title="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-icon" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+                            <a href="#" class="social-icon" title="Youtube"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="footer-heading">Dịch Vụ Đặc Quyền</h4>
+                        <ul class="footer-list list-unstyled">
+                            <li><a href="services.html#concierge">Dịch vụ Concierge 24/7</a></li>
+                            <li><a href="services.html#bespoke">Chế tác Bespoke</a></li>
+                            <li><a href="services.html#private-appointment">Đặt lịch hẹn Private</a></li>
+                            <li><a href="services.html#maintenance">Bảo dưỡng tuyệt tác</a></li>
+                            <li><a href="services.html#exchange-policy">Chính sách thu đổi</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="footer-heading">Thế Giới AURA</h4>
+                        <ul class="footer-list list-unstyled">
+                            <li><a href="index.html#heritage">Di sản thương hiệu</a></li>
+                            <li><a href="index.html#craftsmanship">Nghệ thuật chế tác</a></li>
+                            <li><a href="index.html#sustainability">Hành trình bền vững</a></li>
+                            <li><a href="index.html#boutiques">Hệ thống Boutique</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <p class="copyright mb-3 mb-md-0">
+                        &copy; <span id="currentYear"></span> AURA High Jewelry. Tất cả quyền được bảo lưu.
+                    </p>
+                    <div class="payment-methods d-flex gap-3">
+                        <i class="bi bi-credit-card-fill" title="Credit Card"></i>
+                        <i class="bi bi-paypal" title="PayPal"></i>
+                        <i class="bi bi-apple" title="Apple Pay"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script type="module" src="src/js/script.js"></script>
+    <script type="module" src="src/js/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+/* ==========================================
+   AURA HIGH JEWELRY - UNIFIED LUXURY STYLE
+   ========================================== */
+
+/* IMPORT PHÔNG CHỮ SANG TRỌNG */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    --bg-main: #FAF8F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #121212;
+    --text-secondary: #707070;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --gold-primary: #C9A24D;
+    --gold-hover: #E2C286;
+    --aura-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+body.darkmode {
+    --bg-main: #0B0B0E;
+    --bg-card: #131419;
+    --text-primary: #F7F7F8;
+    --text-secondary: #92929D;
+    --border-color: rgba(226, 194, 134, 0.12);
+    --gold-primary: #E2C286;
+    --gold-hover: #F7E7C4;
+    --aura-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Các lớp tiện ích font chữ */
+.font-playfair { 
+    font-family: 'Playfair Display', serif; 
+}
+
+.font-montserrat { 
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.text-gold { 
+    color: var(--gold-primary) !important; 
+}
+
+/* Khung nền chính của trang */
+.cart-main-container,
+.aura-orders-main {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: calc(100vh - 220px);
+    padding-top: 40px;
+    padding-bottom: 60px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Tiêu đề chung */
+.cart-title,
+.aura-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.aura-brand-tag {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+.aura-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.aura-gold-line {
+    height: 1px;
+    width: 50px;
+    background: var(--gold-primary);
+    margin: 15px auto;
+}
+
+/* Thẻ sản phẩm trong giỏ hàng & Order Group */
+.cart-item-card,
+.order-group-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--aura-shadow);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 20px;
+    color: var(--text-primary);
+}
+
+.cart-item-card:hover,
+.order-group-card:hover {
+    border-color: var(--gold-primary);
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+    transform: translateY(-2px);
+}
+
+.cart-item-card .item-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-primary) !important;
+    font-size: 1.3rem;
+}
+
+/* Khung form thanh toán bên phải */
+.checkout-wrapper {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--aura-shadow);
+    padding: 40px !important;
+    position: sticky;
+    top: 130px;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.checkout-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.04em;
+    padding-bottom: 15px;
+}
+
+/* Ô nhập liệu form chuẩn cao cấp */
+.form-control-luxe, 
+.luxury-input {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    color: var(--text-primary) !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+}
+
+.form-control-luxe:focus, 
+.luxury-input:focus {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--gold-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 12px rgba(201, 162, 77, 0.25) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary) !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-card) inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-control-luxe::placeholder,
+.luxury-input::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.6 !important;
+    font-size: 0.88rem;
+    font-style: italic;
+}
+
+select.form-control-luxe, select.luxury-input {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+select.form-control-luxe option {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.luxury-muted, .form-label {
+    color: var(--text-secondary) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.cart-qty-input {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+    font-weight: 600;
+}
+
+.border-gold {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px;
+    background: var(--bg-card);
+}
+
+.border-top-gold {
+    border-top: 1px solid var(--border-color) !important;
+}
+
+.cart-total-price {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-primary) !important;
+    font-size: 1.8rem !important;
+}
+
+/* Các nút bấm (Buttons) */
+.btn-luxe-primary,
+.btn-aura-primary {
+    background: var(--gold-primary) !important;
+    border: none !important;
+    color: #000000 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(201, 162, 77, 0.25);
+    display: inline-block;
+}
+
+.btn-luxe-primary:hover,
+.btn-aura-primary:hover {
+    background: var(--gold-hover) !important;
+    box-shadow: 0 6px 20px rgba(226, 194, 134, 0.4);
+    transform: translateY(-2px);
+    color: #000000 !important;
+}
+
+.btn-luxe-outline,
+.btn-aura,
+.btn-aura-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-luxe-outline:hover,
+.btn-aura:hover,
+.btn-aura-outline:hover {
+    background-color: var(--gold-primary);
+    color: #000000;
+    border-color: var(--gold-primary);
+}
+
+.btn-aura-danger,
+.btn-cancel-order {
+    background: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-aura-danger:hover,
+.btn-cancel-order:hover {
+    background: #b02a37;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.qty-btn {
+    background-color: transparent !important;
+    border-color: var(--border-color) !important;
+    color: var(--gold-primary) !important;
+    border-radius: 4px !important;
+}
+
+.qty-btn:hover {
+    background-color: var(--gold-primary) !important;
+    color: #000000 !important;
+}
+
+/* Bảng đơn hàng (Order items table) */
+.order-group-header {
+    background: rgba(201, 162, 77, 0.05);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.order-group-body {
+    padding: 1.5rem;
+}
+
+.order-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--text-primary);
+}
+
+.order-items-table th {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.order-items-table td {
+    padding: 12px;
+    border-bottom: 1px dashed var(--border-color);
+    vertical-align: middle;
+}
+
+.order-items-table tr:last-child td {
+    border-bottom: none;
+}
+
+.order-item-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: radial-gradient(circle, rgba(226, 194, 134, 0.05) 0%, transparent 100%);
+    padding: 4px;
+}
+
+.order-group-footer {
+    background: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+body.darkmode .order-group-footer {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+/* Trạng thái đơn hàng (Badges) */
+.badge-status {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+}
+
+.status-pending {
+    color: #d4a347;
+    background: rgba(212, 163, 71, 0.1);
+}
+
+.status-completed {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.status-cancelled {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+/* Toast Container & Thông báo */
+#luxeToastContainer {
+    position: fixed !important;
+    top: 35px !important;
+    right: 35px !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    pointer-events: none !important;
+}
+
+.aura-toast-card {
+    pointer-events: auto !important;
+    background: rgba(15, 15, 17, 0.92) !important;
+    border: 1px solid rgba(212, 175, 55, 0.45) !important;
+    border-radius: 50px !important;
+    padding: 16px 32px 16px 24px !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 0 20px rgba(212, 175, 55, 0.12) !important;
+    color: #F8F5EE !important;
+    font-family: 'Cinzel', 'Playfair Display', serif !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    opacity: 0 !important;
+    transform: translateY(-20px) scale(0.95) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.aura-toast-card.show {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+.aura-toast-card i {
+    color: #D4AF37 !important;
+    font-size: 1.35rem !important;
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6)) !important;
+}
+
+/* Modal Popup Sang Trọng */
+.aura-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.aura-modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--gold-primary);
+    border-radius: 12px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Hiệu ứng Fade In chung */
+.aura-fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.aura-fade-in-delayed {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

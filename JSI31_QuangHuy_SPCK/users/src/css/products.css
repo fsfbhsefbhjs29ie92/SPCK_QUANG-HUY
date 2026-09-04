@@ -1,0 +1,351 @@
+/* ==========================================================================
+   AURA HIGH JEWELRY - PRODUCTS CSS (ULTRA LUXURY & ULTRA CLEAN)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    --bg-main: #FAF8F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #121212;
+    --text-secondary: #707070;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --gold-primary: #C9A24D;
+    --gold-hover: #E2C286;
+    --gold-gradient: linear-gradient(135deg, #c9a24d 0%, #f7e7c4 50%, #b08732 100%);
+    --aura-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Mode (Body có class 'darkmode') */
+body.darkmode {
+    --bg-main: #0B0B0E;
+    --bg-card: #131419;
+    --text-primary: #F7F7F8;
+    --text-secondary: #92929D;
+    --border-color: rgba(226, 194, 134, 0.12);
+    --gold-primary: #E2C286;
+    --gold-hover: #F7E7C4;
+    --gold-gradient: linear-gradient(135deg, #dfb86c 0%, #f7e7c4 50%, #a88338 100%);
+    --aura-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Base Styles */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+
+.aura-products-main {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Header Text */
+.aura-brand-tag {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold-primary);
+    font-weight: 600;
+    display: block;
+}
+
+.aura-title {
+    font-size: 2.3rem;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.aura-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.aura-gold-line {
+    height: 1px;
+    width: 50px;
+    background: var(--gold-primary);
+}
+
+.text-gold { color: var(--gold-primary) !important; }
+.aura-text-muted { color: var(--text-secondary) !important; }
+
+/* Filter Controls */
+.aura-controls {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--aura-shadow);
+}
+
+.aura-input-group .form-control,
+.aura-input-group .input-group-text,
+.aura-select {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+.aura-input-group .form-control:focus,
+.aura-select:focus {
+    box-shadow: none;
+    border-color: var(--gold-primary);
+}
+
+.aura-select option {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* --- PRODUCT CARD (LUXURY REDESIGN) --- */
+.aura-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    box-shadow: var(--aura-shadow);
+}
+
+/* Subtle Shimmer Light Pass Effect */
+.aura-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.8s ease-in-out;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.aura-card:hover::after {
+    left: 150%;
+}
+
+.aura-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-primary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 0 15px rgba(226, 194, 134, 0.12);
+}
+
+/* Image Container */
+.aura-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    padding: 25px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(226, 194, 134, 0.05) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aura-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
+.aura-card:hover .aura-img-wrapper img {
+    transform: scale(1.08);
+}
+
+/* Discount Badge */
+.aura-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--gold-gradient);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 30px;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-meta {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.product-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.product-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+    font-weight: 300;
+}
+
+.price-box { margin-bottom: 18px; }
+
+.price-old {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.price-current {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold-primary);
+}
+
+/* Button */
+.btn-aura {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    padding: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+    margin-top: auto;
+}
+
+.btn-aura:hover {
+    background: var(--gold-primary);
+    color: #000;
+    border-color: var(--gold-primary);
+    box-shadow: 0 4px 15px rgba(226, 194, 134, 0.3);
+}
+
+.btn-aura:disabled {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    background: transparent;
+}
+
+/* Toast */
+.aura-toast {
+    background-color: var(--bg-card);
+    border: 1px solid var(--gold-primary);
+    color: var(--text-primary);
+}
+.aura-toast-header {
+    background-color: rgba(226, 194, 134, 0.1);
+    border-bottom: 1px solid var(--border-color);
+}
+.aura-product-animate {
+    opacity: 0 !important;
+    transform: translateY(50px) !important;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+}
+
+.aura-product-animate.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+/* --- HIỆU ỨNG FADE-IN CHO TRANG TÀI KHOẢN --- */
+@keyframes auraFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.aura-fade-in {
+    animation: auraFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* (Tùy chọn) Hiệu ứng trễ nếu sau này bạn muốn chia nhỏ các phần tử xuất hiện lần lượt */
+.aura-fade-in-delayed {
+    opacity: 0;
+    animation: auraFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+/* --- PAGINATION (AURA LUXURY STYLE) --- */
+.pagination {
+    margin-top: 3rem;
+    gap: 6px;
+}
+
+.pagination .page-item .page-link {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: var(--aura-shadow);
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: var(--gold-primary);
+    border-color: var(--gold-primary);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(226, 194, 134, 0.25);
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--gold-gradient);
+    border-color: var(--gold-primary);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(226, 194, 134, 0.3);
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

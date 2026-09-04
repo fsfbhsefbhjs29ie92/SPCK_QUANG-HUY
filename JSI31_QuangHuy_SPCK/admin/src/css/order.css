@@ -1,0 +1,166 @@
+/* ================= THỐNG KÊ TRANG QUẢN LÝ ================= */
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    padding: 24px;
+    border-radius: 2px;
+}
+
+.stat-card.border-alert {
+    border-left: 3px solid #dc3545;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    color: var(--gold-accent);
+    margin: 0;
+    font-family: var(--font-serif);
+}
+
+.border-bottom-subtle {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-title {
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    margin: 0;
+    font-family: var(--font-serif);
+    color: var(--gold-accent);
+}
+
+.section-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* ================= BỘ LỌC VÀ TÌM KIẾM ================= */
+.filter-bar .custom-input,
+.filter-bar .form-control,
+.filter-bar .form-select,
+#searchUser, #searchDate, #searchAmount {
+    background: rgba(197, 160, 89, 0.02) !important;
+    border: 1px solid var(--border-subtle, rgba(197, 160, 89, 0.25)) !important;
+    color: var(--text-primary, #fff) !important;
+    border-radius: 2px !important;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+}
+
+.filter-bar .custom-input:focus,
+.filter-bar .form-control:focus,
+.filter-bar .form-select:focus,
+#searchUser:focus, #searchDate:focus, #searchAmount:focus {
+    background: rgba(197, 160, 89, 0.05) !important;
+    border-color: var(--gold-accent, #c5a059) !important;
+    color: var(--text-primary, #fff) !important;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+    outline: none;
+}
+
+.filter-bar .form-control::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* ================= BẢNG DANH SÁCH ĐƠN HÀNG (ĐỒNG BỘ DESIGN SYSTEM) ================= */
+.table-responsive {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+}
+
+.table {
+    color: var(--text-primary, #fff) !important;
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-subtle) !important;
+    margin-bottom: 0;
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent !important;
+    color: var(--text-primary, #fff) !important;
+    border-bottom-color: var(--border-subtle) !important;
+    padding: 16px;
+    vertical-align: middle;
+}
+
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: var(--gold-accent, #c5a059) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border-gold, #c5a059) !important;
+}
+
+/* Chữ trong bảng */
+.table td .fw-bold, 
+.table td strong,
+.table td .text-light {
+    color: var(--text-primary, #fff) !important;
+}
+
+.table td .text-muted, 
+.table td small {
+    color: var(--text-muted, #a3a8b8) !important;
+}
+
+/* Ô chọn trạng thái (Select) trong bảng đơn hàng */
+select.status-select, 
+select.custom-input {
+    background-color: #121212 !important;
+    color: var(--text-primary, #fff) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 2px !important;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+select.status-select option, 
+select.custom-input option {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    padding: 10px;
+}
+
+/* Nút Cập nhật trong bảng chuẩn góc vuông viền vàng */
+.table .btn-primary, 
+.table button.btn-primary {
+    background: transparent !important;
+    border: 1px solid var(--gold-accent, #c5a059) !important;
+    color: var(--gold-accent, #c5a059) !important;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px !important;
+    padding: 6px 14px;
+    transition: all 0.3s ease;
+}
+
+.table .btn-primary:hover, 
+.table button.btn-primary:hover {
+    background: var(--gold-accent, #c5a059) !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+/* ================= MODAL CHUNG ================= */
+.custom-modal {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 2px;
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid var(--border-subtle);
+}
