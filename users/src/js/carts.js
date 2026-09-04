@@ -1,5 +1,8 @@
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, doc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from "./firebase-config.js";
+
+// Khóa trạng thái gửi form chống click đúp
+let isSubmitting = false;
 
 // Nhận diện theme trang web (Light Porcelain / Dark Obsidian)
 const isDarkMode = () => {
@@ -57,7 +60,7 @@ const injectLuxuryStyles = () => {
 
         /* Modal Box phông nền Sứ Sáng / Đá Đen Thạch Anh */
         .aura-modal-card {
-            background: #FCFAF7 !important; /* Trắng ngà Champagne */
+            background: #FCFAF7 !important;
             border: 1px solid rgba(197, 160, 89, 0.35) !important;
             border-radius: 12px !important;
             padding: 42px 38px 36px 38px !important;
@@ -113,7 +116,6 @@ const injectLuxuryStyles = () => {
             justify-content: center !important;
         }
 
-        /* Nút GIỮ LẠI: Ghost Gold Button viền mạ vàng Hairline */
         .aura-btn-cancel {
             font-family: 'Montserrat', sans-serif !important;
             font-size: 0.74rem !important;
@@ -137,14 +139,13 @@ const injectLuxuryStyles = () => {
             transform: translateY(-1px) !important;
         }
 
-        /* Nút XÁC NHẬN XÓA: Ruby Burgundy đỏ quý phái */
         .aura-btn-confirm {
             font-family: 'Montserrat', sans-serif !important;
             font-size: 0.74rem !important;
             font-weight: 600 !important;
             letter-spacing: 2.2px !important;
             text-transform: uppercase !important;
-            background: #9E1B1E !important; /* Đỏ Ruby nhung */
+            background: #9E1B1E !important;
             color: #FFFFFF !important;
             border: 1px solid #9E1B1E !important;
             padding: 13px 18px !important;
@@ -154,13 +155,12 @@ const injectLuxuryStyles = () => {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .aura-btn-confirm:hover {
-            background: #C82327 !important; /* Đỏ rực ánh hồng ngọc */
+            background: #C82327 !important;
             border-color: #C82327 !important;
             box-shadow: 0 6px 22px rgba(200, 35, 39, 0.45) !important;
             transform: translateY(-1px) !important;
         }
 
-        /* TOAST THÔNG BÁO: Tinh tế, nổi nhẹ góc trên */
         .aura-toast-card {
             pointer-events: auto !important;
             background: rgba(252, 250, 247, 0.96) !important;
@@ -187,9 +187,8 @@ const injectLuxuryStyles = () => {
             transform: translateY(0) scale(1) !important;
         }
 
-        /* Nền tối (Dark Mode) cho Web */
         .aura-dark-mode .aura-modal-card {
-            background: #111113 !important; /* Obsidian Black */
+            background: #111113 !important;
             border: 1px solid rgba(197, 160, 89, 0.4) !important;
             box-shadow: 0 35px 80px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
         }
@@ -291,7 +290,6 @@ const showLuxeToast = (message, type = 'success', showLoginBtn = false) => {
     `;
 
     toastWrapper.appendChild(toastEl);
-
     requestAnimationFrame(() => toastEl.classList.add('show'));
 
     setTimeout(() => {
@@ -346,7 +344,6 @@ window.updateQty = (id, delta) => {
 
 window.removeItem = (id, btnEl) => {
     const modal = createConfirmModal();
-    
     requestAnimationFrame(() => modal.classList.add('active'));
 
     const cancelBtn = document.getElementById('auraModalCancelBtn');
@@ -361,7 +358,6 @@ window.removeItem = (id, btnEl) => {
 
     confirmBtn.onclick = () => {
         closeModal();
-
         const cardEl = btnEl ? btnEl.closest('.cart-item-card') : null;
 
         if (cardEl) {
@@ -465,6 +461,9 @@ const initForm = () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Chống spam: kiểm tra nếu đang xử lý đơn trước
+            if (isSubmitting) return;
+
             if (!currentUser) {
                 showLuxeToast('Quý khách chưa đăng nhập! Vui lòng đăng nhập tài khoản VIP.', 'error', true);
                 return;
@@ -522,41 +521,94 @@ const initForm = () => {
             const emailVal = document.getElementById('cEmail').value.trim();
             const noteVal = document.getElementById('cNote').value.trim();
 
-            const orderData = {
-                createdAt: Date.now(),
-                customerAddress: customerAddressVal,
-                customerName: customerNameVal,
-                customerPhone: phoneInput,
-                email: emailVal,
-                items: cart.map(i => ({
-                    brand: i.brand,
-                    cartQuantity: Number(i.cartQuantity),
-                    id: i.id,
-                    image: i.image,
-                    maxAmount: Number(i.maxAmount),
-                    name: i.name,
-                    unitPrice: Number(i.unitPrice)
-                })),
-                note: noteVal,
-                paymentMethod: paymentMethodVal,
-                status: "Pending",
-                totalAmount: cart.reduce((sum, i) => sum + (i.unitPrice * i.cartQuantity), 0),
-                uid: currentUser.uid || currentUser.email || "",
-                username: currentUser.username || currentUser.name || customerNameVal
-            };
+            // Khóa giao diện nút bấm
+            isSubmitting = true;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            let origBtnHTML = '';
+            if (submitBtn) {
+                origBtnHTML = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.style.pointerEvents = 'none';
+                submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> ĐANG XỬ LÝ...`;
+            }
 
             try {
-                await addDoc(collection(db, "orders"), orderData);
+                // Xử lý Transaction: Đọc tồn kho -> Cập nhật tồn kho -> Tạo đơn hàng
+                await runTransaction(db, async (transaction) => {
+                    const productUpdates = [];
+
+                    // 1. Đọc dữ liệu tất cả sản phẩm
+                    for (const item of cart) {
+                        const productRef = doc(db, "products", item.id);
+                        const productSnap = await transaction.get(productRef);
+
+                        if (!productSnap.exists()) {
+                            throw new Error(`Sản phẩm "${item.name}" không còn tồn tại trên hệ thống.`);
+                        }
+
+                        const currentStock = Number(productSnap.data().amount || 0);
+                        const requestedQty = Number(item.cartQuantity || 1);
+
+                        if (currentStock < requestedQty) {
+                            throw new Error(`Sản phẩm "${item.name}" chỉ còn ${currentStock} món trong kho (bạn đặt ${requestedQty} món).`);
+                        }
+
+                        productUpdates.push({ productRef, newStock: currentStock - requestedQty });
+                    }
+
+                    // 2. Trừ tồn kho từng sản phẩm
+                    for (const update of productUpdates) {
+                        transaction.update(update.productRef, { amount: update.newStock });
+                    }
+
+                    // 3. Tạo thông tin đơn hàng mới
+                    const newOrderRef = doc(collection(db, "orders"));
+                    const orderData = {
+                        createdAt: serverTimestamp(),
+                        customerAddress: customerAddressVal,
+                        customerName: customerNameVal,
+                        customerPhone: phoneInput,
+                        email: emailVal,
+                        items: cart.map(i => ({
+                            brand: i.brand,
+                            cartQuantity: Number(i.cartQuantity),
+                            id: i.id,
+                            image: i.image,
+                            maxAmount: Number(i.maxAmount),
+                            name: i.name,
+                            unitPrice: Number(i.unitPrice)
+                        })),
+                        note: noteVal,
+                        paymentMethod: paymentMethodVal,
+                        status: "Pending",
+                        totalAmount: cart.reduce((sum, i) => sum + (i.unitPrice * i.cartQuantity), 0),
+                        uid: currentUser.uid || currentUser.email || "",
+                        username: currentUser.username || currentUser.name || customerNameVal
+                    };
+
+                    transaction.set(newOrderRef, orderData);
+                });
+
                 showLuxeToast('Đặt hàng thành công! Cảm ơn quý khách.', 'success');
                 localStorage.removeItem('LuxeUserCart');
                 localStorage.removeItem('cart');
                 localStorage.removeItem('giohang');
+
                 setTimeout(() => {
                     window.location.href = 'orders.html';
                 }, 1500);
+
             } catch (error) {
-                console.error("Lỗi khi lưu đơn hàng: ", error);
-                showLuxeToast('Có lỗi xảy ra khi xử lý đơn hàng.', 'error');
+                console.error("Lỗi khi xử lý đơn hàng: ", error);
+                showLuxeToast(error.message || 'Có lỗi xảy ra khi xử lý đơn hàng.', 'error');
+                
+                // Khôi phục trạng thái nút bấm nếu gặp lỗi
+                isSubmitting = false;
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.pointerEvents = 'auto';
+                    submitBtn.innerHTML = origBtnHTML;
+                }
             }
         });
     }
