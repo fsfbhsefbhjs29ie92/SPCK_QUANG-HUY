@@ -1,4 +1,4 @@
-import { collection, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, onSnapshot, doc, updateDoc, deleteDoc, writeBatch, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from "./firebase-config.js";
 
 let allOrders = [];
@@ -116,7 +116,6 @@ const applyFilters = () => {
         const userPhone = (o.phone || o.customerPhone || '').toLowerCase();
         const matchUser = userName.includes(sUser) || userPhone.includes(sUser);
 
-        // Lọc ngày chuẩn xác theo múi giờ địa phương (Việt Nam)
         let matchDate = true;
         if (sDate && o.createdAt) {
             let orderDate = typeof o.createdAt.toDate === 'function' ? o.createdAt.toDate() : new Date(o.createdAt);
@@ -141,22 +140,67 @@ const applyFilters = () => {
     renderOrders(filtered);
 };
 
+// Xử lý cập nhật trạng thái đơn hàng & Khấu trừ kho sản phẩm
 window.saveStatus = async (id) => {
     const selectEl = document.querySelector(`select[data-id="${id}"]`);
     if (!selectEl) return;
     const newStatus = selectEl.value;
 
+    const targetOrder = allOrders.find(o => o.id === id);
+    if (!targetOrder) return;
+
     try {
+        const batch = writeBatch(db);
         const orderRef = doc(db, "orders", id);
-        await updateDoc(orderRef, { status: newStatus });
-        alert('Cập nhật trạng thái đơn hàng thành công!');
+
+        const isConfirmedState = ['Confirmed', 'Shipping', 'Delivered'].includes(newStatus);
+        const isCanceledState = ['Canceled', 'Cancelled'].includes(newStatus);
+
+        // TH 1: Chuyển sang Xác nhận/Giao/Hoàn thành MÀ TRƯỚC ĐÓ CHƯA TRỪ KHO
+        if (isConfirmedState && !targetOrder.stockDeducted) {
+            if (Array.isArray(targetOrder.items)) {
+                targetOrder.items.forEach(item => {
+                    const productId = item.id;
+                    const qty = Number(item.cartQuantity || item.quantity || item.qty || 1);
+                    if (productId) {
+                        const productRef = doc(db, "products", productId);
+                        batch.update(productRef, {
+                            amount: increment(-qty) // Trừ kho
+                        });
+                    }
+                });
+            }
+            batch.update(orderRef, { status: newStatus, stockDeducted: true });
+        } 
+        // TH 2: Chuyển sang Hủy đơn MÀ TRƯỚC ĐÓ ĐÃ TRỪ KHO (Hoàn lại tồn kho)
+        else if (isCanceledState && targetOrder.stockDeducted) {
+            if (Array.isArray(targetOrder.items)) {
+                targetOrder.items.forEach(item => {
+                    const productId = item.id;
+                    const qty = Number(item.cartQuantity || item.quantity || item.qty || 1);
+                    if (productId) {
+                        const productRef = doc(db, "products", productId);
+                        batch.update(productRef, {
+                            amount: increment(qty) // Hoàn kho
+                        });
+                    }
+                });
+            }
+            batch.update(orderRef, { status: newStatus, stockDeducted: false });
+        } 
+        // TH 3: Thay đổi trạng thái thông thường (không làm ảnh hưởng kho)
+        else {
+            batch.update(orderRef, { status: newStatus });
+        }
+
+        await batch.commit();
+        alert('Cập nhật trạng thái đơn hàng và tồn kho thành công!');
     } catch (err) {
         console.error("Lỗi cập nhật trạng thái:", err);
         alert('Cập nhật thất bại: ' + err.message);
     }
 };
 
-// Xử lý đăng xuất toàn cục bằng Event Delegation (bắt mọi cú click nút #btnLogout)
 document.addEventListener('click', (e) => {
     const logoutBtn = e.target.closest('#btnLogout');
     if (logoutBtn) {

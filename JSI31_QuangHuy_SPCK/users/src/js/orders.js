@@ -1,4 +1,4 @@
-import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc, writeBatch, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { db } from './firebase-config.js';
 
@@ -26,7 +26,6 @@ const isCancelledStatus = (status) => {
     return s.includes('cancel') || s.includes('hủy') || s === 'deleted';
 };
 
-// Cấu hình mỗi trạng thái một màu riêng biệt chuẩn Admin
 const getStatusBadge = (status) => {
     if (!status) return `<span class="badge-status" style="border: 1px solid #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.08); padding: 4px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; display: inline-block;">Chờ xử lý</span>`;
     const s = status.toLowerCase();
@@ -70,11 +69,36 @@ const detectUserFromStorage = () => {
     return null;
 };
 
-// Khách hàng tự bấm Hủy đơn (Thực hiện ngay lập tức không hiện hộp thoại xác nhận)
+// Khách hàng bấm Hủy đơn (Nếu đơn đã trừ kho thì cộng lại vào kho)
 window.handleUserCancel = async (orderId) => {
     try {
         const orderRef = doc(db, "orders", orderId);
-        await updateDoc(orderRef, { status: "Cancelled" });
+        const orderSnap = await getDoc(orderRef);
+
+        if (orderSnap.exists()) {
+            const orderData = orderSnap.data();
+            const batch = writeBatch(db);
+
+            if (orderData.stockDeducted && Array.isArray(orderData.items)) {
+                orderData.items.forEach(item => {
+                    const productId = item.id;
+                    const qty = Number(item.cartQuantity || item.quantity || item.qty || 1);
+                    if (productId) {
+                        const productRef = doc(db, "products", productId);
+                        batch.update(productRef, {
+                            amount: increment(qty)
+                        });
+                    }
+                });
+                batch.update(orderRef, { status: "Cancelled", stockDeducted: false });
+            } else {
+                batch.update(orderRef, { status: "Cancelled" });
+            }
+
+            await batch.commit();
+        } else {
+            await updateDoc(orderRef, { status: "Cancelled" });
+        }
         
         const badgeEl = document.getElementById(`status-badge-${orderId}`);
         if (badgeEl) badgeEl.innerHTML = getStatusBadge('Cancelled');
@@ -93,7 +117,6 @@ window.handleUserCancel = async (orderId) => {
     }
 };
 
-// Khách hàng bấm nút X để xóa hẳn đơn hàng ngay lập tức không hỏi lại
 window.handleUserDelete = async (orderId) => {
     try {
         await deleteDoc(doc(db, "orders", orderId));
@@ -174,7 +197,6 @@ const loadUserOrders = async (uid) => {
                     </button>
                 `;
             } else if (isCancelled) {
-                // Chỉ hiển thị DUY NHẤT 1 NÚT X (chỉ dùng icon bi-x-lg không bị lặp chữ XX)
                 actionButtonsHTML = `
                     <button class="btn btn-sm btn-outline-danger font-montserrat px-3" onclick="handleUserDelete('${order.id}')" title="Xóa khỏi danh sách">
                         <i class="bi bi-x-lg"></i>
@@ -246,24 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (storageUser && storageUser.uid) {
                 loadUserOrders(storageUser.uid);
             } else {
-                if (authRequiredMessage) authRequiredMessage.classList.add('d-none');
-            }
-        }
-    });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const authRequiredMessage = document.getElementById('authRequiredMessage');
-    const auth = getAuth();
-    
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            loadUserOrders(user.uid);
-        } else {
-            const storageUser = detectUserFromStorage();
-            if (storageUser && storageUser.uid) {
-                loadUserOrders(storageUser.uid);
-            } else {
-                // Sửa từ add thành remove để hiển thị box yêu cầu đăng nhập cũ
                 if (authRequiredMessage) authRequiredMessage.classList.remove('d-none');
             }
         }
